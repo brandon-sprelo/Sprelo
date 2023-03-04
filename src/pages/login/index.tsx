@@ -1,19 +1,33 @@
 import Head from "next/head";
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
-  Heading,
   Input,
-  Link,
   Stack,
-  Image,
-  Box,
-  Text
+  Text,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
+
 export default function Login() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  function onSubmit(values) {
+    console.log("Values:", values);
+    return new Promise((resolve) => {
+      console.log("resovel", resolve);
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        resolve();
+      }, 3000);
+    });
+  }
   return (
     <>
       <Head>
@@ -26,25 +40,52 @@ export default function Login() {
             <Text fontSize="45px" pb="69">
               Welcome back!
             </Text>
-            <FormControl id="email">
-              <FormLabel>Email</FormLabel>
-              <Input bgColor="gray.200" border="1px" borderColor="gray.400" type="email" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input bgColor="gray.200" border="1px" borderColor="gray.400" type="password" />
-            </FormControl>
-            <Stack spacing={6}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align="start"
-                justify="space-between"
-              >
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormControl id="email" isInvalid={errors.email}>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: "This is required",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.email && errors.email.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl id="password" isInvalid={errors.password}>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "This is required",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.password && errors.password.message}
+                </FormErrorMessage>
+              </FormControl>
+              <Stack spacing={6}>
+                <Stack
+                  direction={{ base: "column", sm: "row" }}
+                  align="start"
+                  justify="space-between"
+                ></Stack>
+                <Button color="white" bgColor="black" variant="solid" isLoading={isSubmitting} type="submit">
+                  Login
+                </Button>
               </Stack>
-              <Button color="white" bgColor="black" variant="solid">
-                Login
-              </Button>
-            </Stack>
+            </form>
           </Stack>
         </Flex>
         <Flex
