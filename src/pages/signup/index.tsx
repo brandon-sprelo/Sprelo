@@ -1,20 +1,34 @@
 import Head from "next/head";
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormLabel,
-  Heading,
   Input,
-  Link,
   Stack,
-  Image,
-  Box,
   Text,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
 export default function Signup() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  function onSubmit(values) {
+    console.log("Values:", values);
+    return new Promise((resolve) => {
+      console.log("resovel", resolve);
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        resolve();
+      }, 3000);
+    });
+  }
+
   return (
     <>
       <Head>
@@ -26,55 +40,104 @@ export default function Signup() {
             <Text fontSize="45px" pb="69">
               Sign up
             </Text>
-            <FormControl id="fullName">
-              <FormLabel>Full Name</FormLabel>
-              <Input
-                bgColor="gray.200"
-                border="1px"
-                borderColor="gray.400"
-                type="email"
-              />
-            </FormControl>
-            <FormControl id="email">
-              <FormLabel>Email</FormLabel>
-              <Input
-                bgColor="gray.200"
-                border="1px"
-                borderColor="gray.400"
-                type="email"
-              />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input
-                bgColor="gray.200"
-                border="1px"
-                borderColor="gray.400"
-                type="password"
-              />
-            </FormControl>
-            <FormControl id="confirmPassword">
-              <FormLabel>Confirm Password</FormLabel>
-              <Input
-                bgColor="gray.200"
-                border="1px"
-                borderColor="gray.400"
-                type="password"
-              />
-            </FormControl>
-            <Stack spacing={6}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align="start"
-                justify="space-between"
-              ></Stack>
-              <Button color="white" bgColor="yellow.500" variant="solid">
-                Confirm
-              </Button>
-              <Button color="black" bgColor="gray.300" variant="solid">
-                Cancel
-              </Button>
-            </Stack>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormControl id="fullName" isInvalid={errors.fullName}>
+                <FormLabel htmlFor="fullName">Full Name</FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="text"
+                  id="fullName"
+                  placeholder="Full Name"
+                  {...register("fullName", {
+                    required: "This is required",
+                    minLength: {
+                      value: 3,
+                      message: "Minimum length should be 3",
+                    },
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.fullName && errors.fullName.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl id="email" isInvalid={errors.email}>
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="email"
+                  id="email"
+                  placeholder="Email"
+                  {...register("email", {
+                    required: "This is required",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.email && errors.email.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl id="password" isInvalid={errors.password}>
+                <FormLabel htmlFor="password">Password</FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  {...register("password", {
+                    required: "This is required",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.password && errors.password.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl
+                id="confirmPassword"
+                isInvalid={errors.confirmPassword}
+              >
+                <FormLabel htmlFor="confirmPassword">
+                  Confirm Password
+                </FormLabel>
+                <Input
+                  bgColor="gray.200"
+                  border="1px"
+                  borderColor="gray.400"
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  {...register("confirmPassword", {
+                    required: "This is required",
+                  })}
+                />
+                <FormErrorMessage>
+                  {errors.confirmPassword && errors.confirmPassword.message}
+                </FormErrorMessage>
+              </FormControl>
+              <Stack spacing={6}>
+                <Stack
+                  direction={{ base: "column", sm: "row" }}
+                  align="start"
+                  justify="space-between"
+                ></Stack>
+                <Button
+                  color="white"
+                  bgColor="yellow.500"
+                  variant="solid"
+                  isLoading={isSubmitting}
+                  type="submit"
+                >
+                  Confirm
+                </Button>
+                <Button color="black" bgColor="gray.300" variant="solid">
+                  Cancel
+                </Button>
+              </Stack>
+            </form>
           </Stack>
         </Flex>
         <Flex

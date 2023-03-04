@@ -20,6 +20,7 @@ export default function Login() {
         <title>Sprelo - Log In</title>
       </Head>
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
+        <Flex></Flex>
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="md">
             <Text fontSize="45px" pb="69">
