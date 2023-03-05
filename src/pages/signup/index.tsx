@@ -18,15 +18,34 @@ export default function Signup() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(values) {
-    console.log("Values:", values);
-    return new Promise((resolve) => {
-      console.log("resovel", resolve);
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
+  const callApi = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/users/`);
+      const data = await res.json();
+      console.log("data", data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  async function onSubmit(values) {
+    const response = await fetch("http://localhost:3000/auth/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
     });
+
+    const result = await response.json();
+    console.log("Result: ", result);
+    // console.log("Values:", values);
+    // await callApi();
+    // return new Promise((resolve) => {
+    //   console.log("resovel", resolve);
+    //   setTimeout(() => {
+    //     alert(JSON.stringify(values, null, 2));
+    //     resolve();
+    //   }, 3000);
+    // });
   }
 
   return (
