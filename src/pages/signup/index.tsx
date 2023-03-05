@@ -37,15 +37,6 @@ export default function Signup() {
 
     const result = await response.json();
     console.log("Result: ", result);
-    // console.log("Values:", values);
-    // await callApi();
-    // return new Promise((resolve) => {
-    //   console.log("resovel", resolve);
-    //   setTimeout(() => {
-    //     alert(JSON.stringify(values, null, 2));
-    //     resolve();
-    //   }, 3000);
-    // });
   }
 
   return (

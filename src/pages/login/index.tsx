@@ -18,15 +18,15 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(values) {
-    console.log("Values:", values);
-    return new Promise((resolve) => {
-      console.log("resovel", resolve);
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
+  async function onSubmit(values) {
+    const response = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
     });
+
+    const result = await response.json();
+    console.log("Result: ", result);
   }
   return (
     <>
