@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
 
 export default function Signup() {
   const {
@@ -47,16 +48,24 @@ export default function Signup() {
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="md">
+            <Flex justifyContent="space-between">
+              <Text fontSize="69px" pb="102" fontWeight="700">
+                Sprelo
+              </Text>
+              <Text fontSize="15px" as="u">
+                <Link href="/login">Already have an account?</Link>
+              </Text>
+            </Flex>
             <Text fontSize="45px" pb="69">
               Sign up
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl id="fullName" isInvalid={errors.fullName}>
+              <FormControl id="fullName" isInvalid={errors.fullName} pb="10px">
                 <FormLabel htmlFor="fullName">Full Name</FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="text"
                   id="fullName"
                   placeholder="Full Name"
@@ -72,12 +81,12 @@ export default function Signup() {
                   {errors.fullName && errors.fullName.message}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl id="email" isInvalid={errors.email}>
+              <FormControl id="email" isInvalid={errors.email} pb="10px">
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="email"
                   id="email"
                   placeholder="Email"
@@ -89,12 +98,12 @@ export default function Signup() {
                   {errors.email && errors.email.message}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl id="password" isInvalid={errors.password}>
+              <FormControl id="password" isInvalid={errors.password} pb="10px">
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -114,9 +123,9 @@ export default function Signup() {
                   Confirm Password
                 </FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="password"
                   id="confirmPassword"
                   placeholder="Confirm Password"
@@ -128,7 +137,7 @@ export default function Signup() {
                   {errors.confirmPassword && errors.confirmPassword.message}
                 </FormErrorMessage>
               </FormControl>
-              <Stack spacing={6}>
+              <Stack spacing={5}>
                 <Stack
                   direction={{ base: "column", sm: "row" }}
                   align="start"
@@ -136,7 +145,7 @@ export default function Signup() {
                 ></Stack>
                 <Button
                   color="white"
-                  bgColor="yellow.500"
+                  bgColor="button.confirm"
                   variant="solid"
                   isLoading={isSubmitting}
                   type="submit"
@@ -154,7 +163,7 @@ export default function Signup() {
           flex={3}
           border="1px"
           borderColor="gray.200"
-          bg="yellow.400"
+          bg="sprelo.yellow"
         ></Flex>
       </Stack>
     </>

@@ -5,11 +5,14 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  HStack,
   Input,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { getAccessToken, setAccessTokenCookie } from "@/utils/cookie.utils";
+import Link from "next/link";
 
 export default function Login() {
   const {
@@ -18,6 +21,21 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm();
 
+  async function profileSubmit() {
+    const response = await fetch("http://localhost:3000/profile", {
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("data", data);
+      return data;
+    } else {
+      console.error("Failed to fetch protected data");
+    }
+  }
   async function onSubmit(values) {
     const response = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
@@ -25,8 +43,14 @@ export default function Login() {
       body: JSON.stringify(values),
     });
 
-    const result = await response.json();
-    console.log("Result: ", result);
+    // const result = await response.json();
+    // console.log("Result: ", result);
+    if (response.ok) {
+      const { access_token } = await response.json();
+      setAccessTokenCookie(access_token);
+    } else {
+      console.error("login failed");
+    }
   }
   return (
     <>
@@ -34,19 +58,26 @@ export default function Login() {
         <title>Sprelo - Log In</title>
       </Head>
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
-        <Flex></Flex>
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="md">
+            <Flex justifyContent="space-between">
+              <Text fontSize="69px" pb="102" fontWeight="700">
+                Sprelo
+              </Text>
+              <Text fontSize="15px" as="u">
+                <Link href="/signup">Sign up</Link>
+              </Text>
+            </Flex>
             <Text fontSize="45px" pb="69">
               Welcome back!
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl id="email" isInvalid={errors.email}>
+              <FormControl id="email" isInvalid={errors.email} pb="10px">
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="email"
                   id="email"
                   placeholder="Email"
@@ -61,9 +92,9 @@ export default function Login() {
               <FormControl id="password" isInvalid={errors.password}>
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Input
-                  bgColor="gray.200"
+                  bgColor="input.background"
                   border="1px"
-                  borderColor="gray.400"
+                  borderColor="input.border"
                   type="password"
                   id="password"
                   placeholder="Password"
@@ -81,18 +112,32 @@ export default function Login() {
                   align="start"
                   justify="space-between"
                 ></Stack>
-                <Button color="white" bgColor="black" variant="solid" isLoading={isSubmitting} type="submit">
+                <Button
+                  color="white"
+                  bgColor="black"
+                  variant="solid"
+                  isLoading={isSubmitting}
+                  type="submit"
+                >
                   Login
                 </Button>
               </Stack>
             </form>
+            <Button
+              color="white"
+              bgColor="black"
+              variant="solid"
+              onClick={profileSubmit}
+            >
+              Get Profile
+            </Button>
           </Stack>
         </Flex>
         <Flex
           flex={3}
           border="1px"
           borderColor="gray.200"
-          bg="yellow.400"
+          bg="sprelo.yellow"
         ></Flex>
       </Stack>
     </>
