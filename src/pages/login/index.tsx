@@ -13,6 +13,7 @@ import {
 import { useForm } from "react-hook-form";
 import { getAccessToken, setAccessTokenCookie } from "@/utils/cookie.utils";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const {
@@ -20,6 +21,8 @@ export default function Login() {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const router = useRouter();
 
   async function profileSubmit() {
     const response = await fetch("http://localhost:3000/profile", {
@@ -48,6 +51,7 @@ export default function Login() {
     if (response.ok) {
       const { access_token } = await response.json();
       setAccessTokenCookie(access_token);
+      router.push('/')
     } else {
       console.error("login failed");
     }

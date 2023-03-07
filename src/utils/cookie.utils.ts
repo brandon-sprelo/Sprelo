@@ -11,3 +11,5 @@ export const setAccessTokenCookie = (token: string) => {
 };
 
 export const getAccessToken = () => Cookies.get("access_token");
+
+export const deleteAccessToken = () => Cookies.remove("access_token");
