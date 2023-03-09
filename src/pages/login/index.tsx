@@ -83,7 +83,6 @@ export default function Login() {
                   borderColor="input.border"
                   type="email"
                   id="email"
-                  placeholder="Email"
                   {...register("email", {
                     required: "This is required",
                   })}
@@ -100,7 +99,6 @@ export default function Login() {
                   borderColor="input.border"
                   type="password"
                   id="password"
-                  placeholder="Password"
                   {...register("password", {
                     required: "This is required",
                   })}

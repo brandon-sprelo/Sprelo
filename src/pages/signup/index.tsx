@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import SpreloIcon from "@/icons/SpreloIcon";
 
 export default function Signup() {
   const {
@@ -47,17 +48,15 @@ export default function Signup() {
       </Head>
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={7} align="center" justify="center">
-          <Stack spacing={4} w="full" maxW="md">
-            <Flex justifyContent="space-between">
-              <Text fontSize="69px" pb="102" fontWeight="700">
-                Sprelo
-              </Text>
-              <Text fontSize="15px" as="u">
-                <Link href="/login">Already have an account?</Link>
+          <Stack spacing={4} w="full" maxW="container.md">
+          <Flex justifyContent="space-between">
+              <SpreloIcon />
+              <Text fontSize="15px" as="u" display="flex" alignItems="center">
+                <Link href="/login">Sign in</Link>
               </Text>
             </Flex>
-            <Text fontSize="45px" pb="69">
-              Sign up
+            <Text fontSize="45px" pb="69" pt="92">
+              Sign up for Sprelo
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl id="fullName" isInvalid={errors.fullName} pb="10px">
@@ -68,7 +67,6 @@ export default function Signup() {
                   borderColor="input.border"
                   type="text"
                   id="fullName"
-                  placeholder="Full Name"
                   {...register("fullName", {
                     required: "This is required",
                     minLength: {
@@ -89,7 +87,6 @@ export default function Signup() {
                   borderColor="input.border"
                   type="email"
                   id="email"
-                  placeholder="Email"
                   {...register("email", {
                     required: "This is required",
                   })}
@@ -106,7 +103,6 @@ export default function Signup() {
                   borderColor="input.border"
                   type="password"
                   id="password"
-                  placeholder="Password"
                   {...register("password", {
                     required: "This is required",
                   })}
@@ -128,7 +124,6 @@ export default function Signup() {
                   borderColor="input.border"
                   type="password"
                   id="confirmPassword"
-                  placeholder="Confirm Password"
                   {...register("confirmPassword", {
                     required: "This is required",
                   })}
@@ -151,9 +146,6 @@ export default function Signup() {
                   type="submit"
                 >
                   Confirm
-                </Button>
-                <Button color="black" bgColor="gray.300" variant="solid">
-                  Cancel
                 </Button>
               </Stack>
             </form>
