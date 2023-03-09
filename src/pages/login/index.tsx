@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { getAccessToken, setAccessTokenCookie } from "@/utils/cookie.utils";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SpreloIcon from "@/icons/SpreloIcon";
 
 export default function Login() {
   const {
@@ -65,9 +66,7 @@ export default function Login() {
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="md">
             <Flex justifyContent="space-between">
-              <Text fontSize="69px" pb="102" fontWeight="700">
-                Sprelo
-              </Text>
+              <SpreloIcon/>
               <Text fontSize="15px" as="u">
                 <Link href="/signup">Sign up</Link>
               </Text>
