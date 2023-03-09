@@ -9,6 +9,7 @@ import {
   Input,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { getAccessToken, setAccessTokenCookie } from "@/utils/cookie.utils";
@@ -22,6 +23,8 @@ export default function Login() {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const toast = useToast();
 
   const router = useRouter();
 
@@ -52,9 +55,23 @@ export default function Login() {
     if (response.ok) {
       const { access_token } = await response.json();
       setAccessTokenCookie(access_token);
+      toast({
+        title: 'Login successful.',
+        description: "Welcome back to Sprelo.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
       router.push("/");
     } else {
       console.error("login failed");
+      toast({
+        title: 'Login failed.',
+        description: "Invalid email or password.",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
     }
   }
   return (

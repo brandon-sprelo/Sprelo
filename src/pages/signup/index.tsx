@@ -8,17 +8,23 @@ import {
   Input,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import SpreloIcon from "@/icons/SpreloIcon";
+import Toast from "@/components/Toast";
 
 export default function Signup() {
   const {
     handleSubmit,
+    watch,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+  const password = watch("password"); // watch for changes in the password field
+
+  const toast = useToast();
 
   const callApi = async () => {
     try {
@@ -39,6 +45,13 @@ export default function Signup() {
 
     const result = await response.json();
     console.log("Result: ", result);
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   }
 
   return (
@@ -49,7 +62,7 @@ export default function Signup() {
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="container.md">
-          <Flex justifyContent="space-between">
+            <Flex justifyContent="space-between">
               <SpreloIcon />
               <Text fontSize="15px" as="u" display="flex" alignItems="center">
                 <Link href="/login">Sign in</Link>
@@ -126,10 +139,15 @@ export default function Signup() {
                   id="confirmPassword"
                   {...register("confirmPassword", {
                     required: "This is required",
+                    validate: (value) => value === password, // compare the confirm password field to the password field
                   })}
                 />
                 <FormErrorMessage>
                   {errors.confirmPassword && errors.confirmPassword.message}
+                  {errors.confirmPassword &&
+                    errors.confirmPassword.type === "validate" && (
+                      <span>Passwords do not match</span>
+                    )}
                 </FormErrorMessage>
               </FormControl>
               <Stack spacing={5}>
@@ -157,6 +175,7 @@ export default function Signup() {
           borderColor="gray.200"
           bg="sprelo.yellow"
         ></Flex>
+        {/* <Toast/> */}
       </Stack>
     </>
   );
