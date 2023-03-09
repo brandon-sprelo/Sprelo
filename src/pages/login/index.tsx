@@ -72,7 +72,7 @@ export default function Login() {
               </Text>
             </Flex>
             <Text fontSize="45px" pb="69" pt="102">
-              Welcome back!
+                Welcome back!
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl id="email" isInvalid={errors.email} pb="10px">
