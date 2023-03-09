@@ -52,7 +52,7 @@ export default function Login() {
     if (response.ok) {
       const { access_token } = await response.json();
       setAccessTokenCookie(access_token);
-      router.push('/')
+      router.push("/");
     } else {
       console.error("login failed");
     }
@@ -64,14 +64,14 @@ export default function Login() {
       </Head>
       <Stack minH="100vh" direction={{ base: "column", md: "row" }}>
         <Flex p={8} flex={7} align="center" justify="center">
-          <Stack spacing={4} w="full" maxW="md">
+          <Stack spacing={4} w="full" maxW="container.md">
             <Flex justifyContent="space-between">
-              <SpreloIcon/>
-              <Text fontSize="15px" as="u">
+              <SpreloIcon />
+              <Text fontSize="15px" as="u" display="flex" alignItems="center">
                 <Link href="/signup">Sign up</Link>
               </Text>
             </Flex>
-            <Text fontSize="45px" pb="69">
+            <Text fontSize="45px" pb="69" pt="102">
               Welcome back!
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,14 +126,14 @@ export default function Login() {
                 </Button>
               </Stack>
             </form>
-            <Button
+            {/* <Button
               color="white"
               bgColor="black"
               variant="solid"
               onClick={profileSubmit}
             >
               Get Profile
-            </Button>
+            </Button> */}
           </Stack>
         </Flex>
         <Flex
