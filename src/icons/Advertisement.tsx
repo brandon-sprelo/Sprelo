@@ -1,0 +1,59 @@
+import { Icon } from "@chakra-ui/react";
+
+export default function Advertisement(props) {
+  return (
+    <Icon
+      width="131"
+      height="85"
+      viewBox="0 0 131 85"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <rect
+        x="5.98975"
+        y="6.18262"
+        width="123.165"
+        height="77.5493"
+        rx="4"
+        fill="black"
+        stroke="black"
+        stroke-width="2"
+      />
+      <rect
+        x="1.77539"
+        y="1.96777"
+        width="123.165"
+        height="77.5493"
+        rx="4"
+        fill="#343434"
+        stroke="black"
+        stroke-width="2"
+      />
+      <rect
+        x="78.3838"
+        y="48.6963"
+        width="32.409"
+        height="5.30328"
+        rx="2.65164"
+        fill="#7C7C7C"
+      />
+      <rect
+        x="10.0303"
+        y="9.80664"
+        width="61.8717"
+        height="61.8717"
+        rx="5"
+        fill="#7C7C7C"
+      />
+      <rect
+        x="78.3838"
+        y="56.3584"
+        width="37.7122"
+        height="5.30328"
+        rx="2.65164"
+        fill="#7C7C7C"
+      />
+    </Icon>
+  );
+}

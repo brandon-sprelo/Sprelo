@@ -1,6 +1,8 @@
+import CallToActionWithVideo from "@/components/Examples/CTAWithVideoExample";
+import Header from "@/components/Header";
 import { useLoggedInStatus } from "@/hooks/useLoggedInStatus";
 import { deleteAccessToken, getAccessToken } from "@/utils/cookie.utils";
-import { Button, Text } from "@chakra-ui/react";
+import { Box, Button, Container, Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -11,35 +13,22 @@ export default function Home() {
     deleteAccessToken();
     setLoggedIn(false);
   };
-
-  useEffect(() => {}, []);
   return (
     <>
       <Head>
         <title>Sprelo</title>
       </Head>
       <div>
-        <Text fontSize="65px" fontWeight="800">
-          Sprelo
-        </Text>
-
-        {loggedIn ? (
-          <>
-            <Button onClick={handleLogout}>Logout</Button>
-
-            <Text>Logged In</Text>
-          </>
-        ) : (
-          <>
-            <Button>
-              <Link href="/login">Log in</Link>
-            </Button>
-            <Button>
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-            <Text>Not signed in</Text>
-          </>
-        )}
+        <Header />
+        {/* <Container maxW={"7xl"} bgColor="sprelo.yellow">
+          <Stack
+            align={"center"}
+            spacing={{ base: 8, md: 10 }}
+            py={{ base: 20, md: 28 }}
+            direction={{ base: "column", md: "row" }}
+          ></Stack>
+        </Container> */}
+        <CallToActionWithVideo />
       </div>
     </>
   );
