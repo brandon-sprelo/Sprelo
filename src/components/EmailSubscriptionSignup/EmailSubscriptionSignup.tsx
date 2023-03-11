@@ -31,7 +31,7 @@ export default function EmailSubscriptionSignup() {
   };
   return (
     <>
-      <Flex direction={{ base: "column"}}>
+      <Flex direction={{ base: "column" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormControl id="email" isInvalid={errors.email}>
             <Stack
@@ -41,9 +41,10 @@ export default function EmailSubscriptionSignup() {
               // justify="space-between"
             >
               <Input
+                maxW="437px"
                 bgColor="input.background"
                 border="1px"
-                borderColor="input.border"
+                borderColor="black"
                 type="email"
                 id="email"
                 placeholder="Enter your email"
@@ -54,24 +55,23 @@ export default function EmailSubscriptionSignup() {
               <FormErrorMessage>
                 {errors.email && errors.email.message}
               </FormErrorMessage>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align="start"
-                justify="space-between"
-              ></Stack>
               <Button
+                w="100%"
+                maxW="139px"
                 color="white"
                 bgColor="black"
                 variant="solid"
                 isLoading={isSubmitting}
                 type="submit"
+                fontFamily="Satoshi-Bold"
+                fontSize="18px"
               >
                 Enter
               </Button>
             </Stack>
           </FormControl>
         </form>
-        <Flex>
+        <Flex pt="15px" pl="10px">
           <Text>Create your free account. No Credit Card required.</Text>
         </Flex>
       </Flex>

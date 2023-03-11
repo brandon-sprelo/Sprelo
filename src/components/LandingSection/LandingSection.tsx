@@ -29,48 +29,42 @@ export default function CallToActionWithVideo() {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
+        border="1px"
+        borderColor={"gray"}
       >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Text
-            lineHeight="94%"
-            fontWeight={600}
-            fontSize={{ base: "40px", sm: "40px", lg: "60px" }}
-          >
-            Don’t let testing slow you down.
-            <br />
-          </Text>
-          <Text fontSize="35px">Get started today for free.</Text>
-          <Text>
-            Date-back your platform with rapid, and accurate customer testing.
-            Conduct A/B tests, understand user behavior and identify emotional
-            triggers all right here on Sprelo.
-          </Text>
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={{ base: "column", sm: "row" }}
-          >
-            <EmailSubscriptionSignup />
-            {/* <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              colorScheme={"red"}
-              bg={"red.400"}
-              _hover={{ bg: "red.500" }}
+        <Stack
+          flex={1}
+          spacing={{ base: 5, md: 10 }}
+          border="1px"
+          borderColor={"red"}
+        >
+          <Flex flexDir="column">
+            <Text
+              fontFamily="Satoshi-Bold"
+              lineHeight="94%"
+              fontWeight={600}
+              fontSize={{ base: "40px", sm: "40px", lg: "60px" }}
+              maxW="544px"
             >
-              Get started
-            </Button>
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
+              Don’t let testing slow you down.
+            </Text>
+            <Text fontFamily="Satoshi-Medium" fontSize="35px" pt="22px">
+              Get started today for free.
+            </Text>
+            <Text
+              fontFamily="Satoshi-Medium"
+              fontSize="22px"
+              maxW="590px"
+              pt="27px"
             >
-              How It Works
-            </Button> */}
-          </Stack>
+              Date-back your platform with rapid, and accurate customer testing.
+              Conduct A/B tests, understand user behavior and identify emotional
+              triggers all right here on Sprelo.
+            </Text>
+            <Box pt="27px">
+              <EmailSubscriptionSignup />
+            </Box>
+          </Flex>
         </Stack>
         <Flex
           flex={1}
@@ -91,11 +85,15 @@ export default function CallToActionWithVideo() {
           >
             <Box position="relative">
               <Box position="absolute" left="380px" top="80px">
-                <Text>Website</Text>
+                <Text fontSize="25px" textAlign="center">
+                  Website
+                </Text>
                 <Website />
               </Box>
               <Box position="absolute" left="520px">
-                <Text>Social</Text>
+                <Text fontSize="25px" textAlign="center">
+                  Social Post
+                </Text>
                 <SocialPost />
               </Box>
               <Box position="absolute" left="490px" top="200px">
@@ -103,12 +101,20 @@ export default function CallToActionWithVideo() {
               </Box>
               <Box position="absolute" left="560px" top="140px">
                 <Advertisement />
-                <Text>Advertisement</Text>
+                <Text fontSize="25px" textAlign="center">
+                  Advertisement
+                </Text>
               </Box>
-            </Box>
-            <Box position="absolute" top="400px" right="200px">
-              <SpreloExample />
-              <Text>Sprelo</Text>
+              <Box position="absolute" top="400px" right="200px">
+                <SpreloExample />
+                <Text
+                  fontFamily="Satoshi-Bold"
+                  fontSize="40px"
+                  textAlign="center"
+                >
+                  Sprelo
+                </Text>
+              </Box>
             </Box>
 
             {/* <IconButton

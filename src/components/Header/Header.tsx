@@ -17,7 +17,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import SpreloIcon from "@/icons/SpreloIcon";
 import SpreloIconSideways from "@/icons/SpreloIconSideways";
 import { useLoggedInStatus } from "@/hooks/useLoggedInStatus";
 import { deleteAccessToken, getAccessToken } from "@/utils/cookie.utils";
@@ -52,7 +51,8 @@ export default function Header() {
     <>
       <Box
         bg={useColorModeValue("white", "white")}
-        px={4}
+        px="120px"
+        py="15px"
         borderBottom="2px"
         borderColor="black"
       >
@@ -89,7 +89,7 @@ export default function Header() {
                   minW={0}
                   pr="6"
                 >
-                  <Person boxSize="8"/>
+                  <Person boxSize="8" />
                 </MenuButton>
                 <MenuList>
                   <MenuItem>Profile</MenuItem>
@@ -99,11 +99,11 @@ export default function Header() {
               </Menu>
             ) : (
               <>
-                <Button mr={2}>
+                {/* <Button mr={2}>
                   <Link href="/login">Log in</Link>
-                </Button>
+                </Button> */}
                 <Button>
-                  <Link href="/signup">Sign Up</Link>
+                  <Link href="/signup">Sign in</Link>
                 </Button>
               </>
             )}
