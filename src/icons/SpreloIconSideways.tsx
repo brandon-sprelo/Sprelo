@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 
-export default function SpreloIconSideways(props) {
+export default function SpreloIconSideways(props: any) {
   return (
     <Icon
       width="200"

@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 
-export default function SpreloExample(props) {
+export default function SpreloExample(props: any) {
   return (
     <Icon
       width="458"

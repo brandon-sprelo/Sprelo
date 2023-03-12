@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 
-export default function SocialPost(props) {
+export default function SocialPost(props: any) {
   return (
     <Icon
       width="63"

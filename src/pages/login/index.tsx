@@ -37,7 +37,6 @@ export default function Login() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("data", data);
       return data;
     } else {
       console.error("Failed to fetch protected data");

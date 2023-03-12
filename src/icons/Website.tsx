@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 
-export default function Website(props) {
+export default function Website(props: any) {
   return (
     <Icon
       width="111"

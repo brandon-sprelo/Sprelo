@@ -17,7 +17,6 @@ export default function EmailSubscriptionSignup() {
     formState: { errors },
   } = useForm();
   const toast = useToast();
-  console.log("ENV:", process.env.API_URL);
   const onSubmit = async (values: any) => {
     const response = await fetch("http://localhost:3000/email-subscription", {
       method: "POST",

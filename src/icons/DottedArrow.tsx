@@ -1,6 +1,6 @@
 import { Icon } from "@chakra-ui/react";
 
-export default function DottedArrow(props) {
+export default function DottedArrow(props: any) {
   return (
     <Icon
       width="192"
