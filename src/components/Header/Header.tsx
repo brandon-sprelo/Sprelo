@@ -51,7 +51,7 @@ export default function Header() {
     <>
       <Box
         bg={useColorModeValue("white", "white")}
-        px="120px"
+        px={{base: "30px",md:"120px"}}
         py="15px"
         borderBottom="2px"
         borderColor="black"
@@ -59,6 +59,7 @@ export default function Header() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
+            bgColor="white"
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
             display={{ md: "none" }}
@@ -102,7 +103,7 @@ export default function Header() {
                 {/* <Button mr={2}>
                   <Link href="/login">Log in</Link>
                 </Button> */}
-                <Button>
+                <Button bgColor="white">
                   <Link href="/signup">Sign in</Link>
                 </Button>
               </>

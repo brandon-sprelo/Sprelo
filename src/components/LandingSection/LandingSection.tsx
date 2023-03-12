@@ -18,25 +18,24 @@ import {
   createIcon,
   IconProps,
   useColorModeValue,
+  useBreakpoint,
 } from "@chakra-ui/react";
 import EmailSubscriptionSignup from "../EmailSubscriptionSignup";
 
-export default function CallToActionWithVideo() {
+export default function LandingSection() {
+  const breakpoint = useBreakpoint();
+
   return (
-    <Container maxH="100%" maxW="100%" bgColor="sprelo.yellow" px="120px">
+    <Container minH="100vH" maxW="100%" bgColor="sprelo.yellow" px="120px">
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
-        border="1px"
-        borderColor={"gray"}
       >
         <Stack
           flex={1}
           spacing={{ base: 5, md: 10 }}
-          border="1px"
-          borderColor={"red"}
         >
           <Flex flexDir="column">
             <Text
@@ -66,81 +65,87 @@ export default function CallToActionWithVideo() {
             </Box>
           </Flex>
         </Stack>
-        <Flex
-          flex={1}
-          justify={"center"}
-          align={"center"}
-          position={"relative"}
-          w={"full"}
-          // border="2px"
-          // borderColor="black"
-        >
-          <Box
+        {["lg", "xl", "2xl"].includes(breakpoint) ? (
+          <Flex
+            flex={1}
+            justify={"center"}
+            align={"center"}
             position={"relative"}
-            height={"700px"}
-            // rounded={"2xl"}
-            // boxShadow={"2xl"}
-            width={"full"}
-            mt="-60px"
+            w={"full"}
           >
-            <Box position="relative">
-              <Box position="absolute" left="380px" top="80px">
-                <Text fontSize="25px" textAlign="center">
-                  Website
-                </Text>
-                <Website />
-              </Box>
-              <Box position="absolute" left="520px">
-                <Text fontSize="25px" textAlign="center">
-                  Social Post
-                </Text>
-                <SocialPost />
-              </Box>
-              <Box position="absolute" left="490px" top="200px">
-                <DottedArrow />
-              </Box>
-              <Box position="absolute" left="560px" top="140px">
-                <Advertisement />
-                <Text fontSize="25px" textAlign="center">
-                  Advertisement
-                </Text>
-              </Box>
-              <Box position="absolute" top="400px" right="200px">
-                <SpreloExample />
-                <Text
-                  fontFamily="Satoshi-Bold"
-                  fontSize="40px"
-                  textAlign="center"
+            <Box
+              position={"relative"}
+              height={"700px"}
+              width={"full"}
+              mt="-60px"
+            >
+              <Box position="relative">
+                <Box
+                  position="absolute"
+                  left={{ lg: "310px", xl: "380px" }}
+                  top={{ lg: "180px", xl: "66px" }}
                 >
-                  Sprelo
-                </Text>
+                  <Text
+                    fontSize={{ lg: "20px", xl: "25px" }}
+                    textAlign="center"
+                  >
+                    Website
+                  </Text>
+                  <Website w={{ lg: "83px", xl: "111px" }} />
+                </Box>
+                <Box
+                  position="absolute"
+                  left={{ lg: "410px", xl: "520px" }}
+                  top={{ lg: "100px", xl: "0px" }}
+                >
+                  <Text
+                    fontSize={{ lg: "20px", xl: "25px" }}
+                    textAlign="center"
+                    whiteSpace="nowrap"
+                  >
+                    Social Post
+                  </Text>
+                  <SocialPost w={{ lg: "47px", xl: "63px" }} />
+                </Box>
+                <Box
+                  position="absolute"
+                  left={{ lg: "390px", xl: "490px" }}
+                  top={{ lg: "250px", xl: "200px" }}
+                >
+                  <DottedArrow w={{ lg: "144px", xl: "192px" }} />
+                </Box>
+                <Box
+                  position="absolute"
+                  left={{ lg: "450px", xl: "550px" }}
+                  top={{ lg: "220px", xl: "160px" }}
+                >
+                  <Advertisement w={{ lg: "98px", xl: "131px" }} />
+                  <Text
+                    fontSize={{ lg: "20px", xl: "25px" }}
+                    textAlign="center"
+                  >
+                    Advertisement
+                  </Text>
+                </Box>
+                <Box
+                  position="absolute"
+                  left={{ lg: "25px", xl: "25px" }}
+                  top={{ lg: "420px", xl: "400px" }}
+                >
+                  <SpreloExample w={{ lg: "343px", xl: "458px" }} />
+                  <Text
+                    fontFamily="Satoshi-Bold"
+                    fontSize={{ lg: "30px", xl: "40px" }}
+                    textAlign="center"
+                    w={{ lg: "50%", xl: "100%" }}
+                  >
+                    Sprelo
+                  </Text>
+                </Box>
               </Box>
             </Box>
-
-            {/* <IconButton
-              aria-label={"Play Button"}
-              variant={"ghost"}
-              _hover={{ bg: "transparent" }}
-              icon={<PlayIcon w={12} h={12} />}
-              size={"lg"}
-              color={"white"}
-              position={"absolute"}
-              left={"50%"}
-              top={"50%"}
-              transform={"translateX(-50%) translateY(-50%)"}
-            />
-            <Image
-              alt={"Hero Image"}
-              fit={"cover"}
-              align={"center"}
-              w={"100%"}
-              h={"100%"}
-              src={
-                "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
-              }
-            /> */}
-          </Box>
-        </Flex>
+          </Flex>
+        ) : null}
       </Stack>
     </Container>
   );
