@@ -18,7 +18,7 @@ export default function Website(props) {
         rx="4"
         fill="black"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="1.27197"
@@ -28,13 +28,13 @@ export default function Website(props) {
         rx="4"
         fill="white"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M1.27197 9.5H107.075V70.7171C107.075 72.9262 105.284 74.717 103.075 74.717H5.27197C3.06283 74.717 1.27197 72.9262 1.27197 70.717V9.5Z"
         fill="#343434"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <circle cx="6.45201" cy="5.99498" r="0.660019" fill="black" />
       <circle cx="8.87193" cy="5.99498" r="0.660019" fill="black" />

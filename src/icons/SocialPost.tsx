@@ -26,7 +26,7 @@ export default function SocialPost(props) {
         rx="4"
         fill="#343434"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="6.36475"

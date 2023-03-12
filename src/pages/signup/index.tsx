@@ -13,7 +13,6 @@ import {
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import SpreloIcon from "@/icons/SpreloIcon";
-import Toast from "@/components/Toast";
 
 export default function Signup() {
   const {
@@ -26,17 +25,7 @@ export default function Signup() {
 
   const toast = useToast();
 
-  const callApi = async () => {
-    try {
-      const res = await fetch(`http://localhost:3000/users/`);
-      const data = await res.json();
-      console.log("data", data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  async function onSubmit(values) {
+  async function onSubmit(values: any) {
     try {
       const response = await fetch("http://localhost:3000/auth/signup", {
         method: "POST",
@@ -85,7 +74,11 @@ export default function Signup() {
               Sign up for Sprelo
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl id="fullName" isInvalid={errors.fullName} pb="10px">
+              <FormControl
+                id="fullName"
+                isInvalid={!!errors.fullName}
+                pb="10px"
+              >
                 <FormLabel htmlFor="fullName">Full Name</FormLabel>
                 <Input
                   bgColor="input.background"
@@ -102,10 +95,10 @@ export default function Signup() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.fullName && errors.fullName.message}
+                  <>{errors.fullName && errors.fullName.message}</>
                 </FormErrorMessage>
               </FormControl>
-              <FormControl id="email" isInvalid={errors.email} pb="10px">
+              <FormControl id="email" isInvalid={!!errors.email} pb="10px">
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
                   bgColor="input.background"
@@ -118,10 +111,14 @@ export default function Signup() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.email && errors.email.message}
+                  <>{errors.email && errors.email.message}</>
                 </FormErrorMessage>
               </FormControl>
-              <FormControl id="password" isInvalid={errors.password} pb="10px">
+              <FormControl
+                id="password"
+                isInvalid={!!errors.password}
+                pb="10px"
+              >
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Input
                   bgColor="input.background"
@@ -134,12 +131,12 @@ export default function Signup() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.password && errors.password.message}
+                  <>{errors.password && errors.password.message}</>
                 </FormErrorMessage>
               </FormControl>
               <FormControl
                 id="confirmPassword"
-                isInvalid={errors.confirmPassword}
+                isInvalid={!!errors.confirmPassword}
               >
                 <FormLabel htmlFor="confirmPassword">
                   Confirm Password
@@ -156,11 +153,13 @@ export default function Signup() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.confirmPassword && errors.confirmPassword.message}
-                  {errors.confirmPassword &&
-                    errors.confirmPassword.type === "validate" && (
-                      <span>Passwords do not match</span>
-                    )}
+                  <>
+                    {errors.confirmPassword && errors.confirmPassword.message}
+                    {errors.confirmPassword &&
+                      errors.confirmPassword.type === "validate" && (
+                        <span>Passwords do not match</span>
+                      )}
+                  </>
                 </FormErrorMessage>
               </FormControl>
               <Stack spacing={5}>

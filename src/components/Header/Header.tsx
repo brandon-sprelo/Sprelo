@@ -14,6 +14,7 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
+  Link as ChakraLink,
   Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -26,7 +27,7 @@ import Person from "@/icons/Person";
 const Links = [""];
 
 const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
+  <ChakraLink
     px={2}
     py={1}
     rounded={"md"}
@@ -37,7 +38,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
     href={"#"}
   >
     {children}
-  </Link>
+  </ChakraLink>
 );
 
 export default function Header() {
@@ -51,7 +52,7 @@ export default function Header() {
     <>
       <Box
         bg={useColorModeValue("white", "white")}
-        px={{base: "30px",md:"120px"}}
+        px={{ base: "30px", md: "120px" }}
         py="15px"
         borderBottom="2px"
         borderColor="black"

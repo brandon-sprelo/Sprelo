@@ -19,7 +19,7 @@ export default function SpreloExample(props) {
         rx="12"
         fill="black"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="1.479"
@@ -29,13 +29,13 @@ export default function SpreloExample(props) {
         rx="12"
         fill="white"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <path
         d="M1.479 24.0771H446.763V297.617C446.763 304.244 441.391 309.617 434.763 309.617H13.479C6.85159 309.617 1.479 304.244 1.479 297.617V24.0771Z"
         fill="url(#pattern0)"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <circle cx="17.822" cy="13.0363" r="2.73847" fill="black" />
       <circle cx="27.864" cy="13.0363" r="2.73847" fill="black" />

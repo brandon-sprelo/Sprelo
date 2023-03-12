@@ -18,7 +18,7 @@ export default function Advertisement(props) {
         rx="4"
         fill="black"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="1.77539"
@@ -28,7 +28,7 @@ export default function Advertisement(props) {
         rx="4"
         fill="#343434"
         stroke="black"
-        stroke-width="2"
+        strokeWidth="2"
       />
       <rect
         x="78.3838"

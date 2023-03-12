@@ -43,15 +43,13 @@ export default function Login() {
       console.error("Failed to fetch protected data");
     }
   }
-  async function onSubmit(values) {
+  async function onSubmit(values: any) {
     const response = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
 
-    // const result = await response.json();
-    // console.log("Result: ", result);
     if (response.ok) {
       const { access_token } = await response.json();
       setAccessTokenCookie(access_token);
@@ -94,7 +92,7 @@ export default function Login() {
               Welcome back!
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl id="email" isInvalid={errors.email} pb="10px">
+              <FormControl id="email" isInvalid={!!errors.email} pb="10px">
                 <FormLabel htmlFor="email">Email</FormLabel>
                 <Input
                   bgColor="input.background"
@@ -107,10 +105,10 @@ export default function Login() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.email && errors.email.message}
+                  <>{errors.email && errors.email.message}</>
                 </FormErrorMessage>
               </FormControl>
-              <FormControl id="password" isInvalid={errors.password}>
+              <FormControl id="password" isInvalid={!!errors.password}>
                 <FormLabel htmlFor="password">Password</FormLabel>
                 <Input
                   bgColor="input.background"
@@ -123,7 +121,7 @@ export default function Login() {
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.password && errors.password.message}
+                  <>{errors.password && errors.password.message}</>
                 </FormErrorMessage>
               </FormControl>
               <Stack spacing={6}>

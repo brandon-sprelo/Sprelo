@@ -1,10 +1,8 @@
 import {
-  Box,
   Button,
   Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   Stack,
   Text,
@@ -16,11 +14,11 @@ export default function EmailSubscriptionSignup() {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm();
   const toast = useToast();
-
-  const onSubmit = async (values) => {
+  console.log("ENV:", process.env.API_URL);
+  const onSubmit = async (values: any) => {
     const response = await fetch("http://localhost:3000/email-subscription", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,7 +38,7 @@ export default function EmailSubscriptionSignup() {
     <>
       <Flex direction={{ base: "column" }}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl id="email" isInvalid={errors.email}>
+          <FormControl id="email" isInvalid={!!errors.email}>
             <Stack
               spacing={1}
               direction={{ base: "column", sm: "row" }}
@@ -60,7 +58,7 @@ export default function EmailSubscriptionSignup() {
                 })}
               />
               <FormErrorMessage>
-                {errors.email && errors.email.message}
+                <>{errors.email && errors.email.message}</>
               </FormErrorMessage>
               <Button
                 w="100%"
