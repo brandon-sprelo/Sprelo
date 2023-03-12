@@ -56,22 +56,22 @@ export default function Login() {
       const { access_token } = await response.json();
       setAccessTokenCookie(access_token);
       toast({
-        title: 'Login successful.',
+        title: "Login successful.",
         description: "Welcome back to Sprelo.",
-        status: 'success',
+        status: "success",
         duration: 3000,
         isClosable: true,
-      })
+      });
       router.push("/");
     } else {
       console.error("login failed");
       toast({
-        title: 'Login failed.',
+        title: "Login failed.",
         description: "Invalid email or password.",
-        status: 'error',
+        status: "error",
         duration: 3000,
         isClosable: true,
-      })
+      });
     }
   }
   return (
@@ -83,13 +83,15 @@ export default function Login() {
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="container.md">
             <Flex justifyContent="space-between">
-              <SpreloIcon />
+              <Link href="/">
+                <SpreloIcon />
+              </Link>
               <Text fontSize="15px" as="u" display="flex" alignItems="center">
                 <Link href="/signup">Sign up</Link>
               </Text>
             </Flex>
             <Text fontSize="45px" pb="69" pt="102">
-                Welcome back!
+              Welcome back!
             </Text>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl id="email" isInvalid={errors.email} pb="10px">

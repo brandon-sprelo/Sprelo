@@ -63,7 +63,9 @@ export default function Signup() {
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="container.md">
             <Flex justifyContent="space-between">
-              <SpreloIcon />
+              <Link href='/'>
+                <SpreloIcon />
+              </Link>
               <Text fontSize="15px" as="u" display="flex" alignItems="center">
                 <Link href="/login">Sign in</Link>
               </Text>

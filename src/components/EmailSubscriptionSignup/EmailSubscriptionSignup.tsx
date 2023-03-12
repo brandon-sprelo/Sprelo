@@ -20,7 +20,15 @@ export default function EmailSubscriptionSignup() {
   } = useForm();
   const toast = useToast();
 
-  const onSubmit = () => {
+  const onSubmit = async (values) => {
+    const response = await fetch("http://localhost:3000/email-subscription", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(values),
+    });
+
+    const result = await response.json();
+    console.log("Result: ", result);
     toast({
       title: "Email subscription submitted!.",
       description: "Thanks for subscribing!",
