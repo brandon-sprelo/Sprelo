@@ -37,21 +37,32 @@ export default function Signup() {
   };
 
   async function onSubmit(values) {
-    const response = await fetch("http://localhost:3000/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
-    });
-
-    const result = await response.json();
-    console.log("Result: ", result);
-    toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
-      status: "success",
-      duration: 3000,
-      isClosable: true,
-    });
+    try {
+      const response = await fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(`${result.error}`);
+      }
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (e) {
+      toast({
+        title: "Account creation error.",
+        description: "Unable to create account.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   }
 
   return (
@@ -63,7 +74,7 @@ export default function Signup() {
         <Flex p={8} flex={7} align="center" justify="center">
           <Stack spacing={4} w="full" maxW="container.md">
             <Flex justifyContent="space-between">
-              <Link href='/'>
+              <Link href="/">
                 <SpreloIcon />
               </Link>
               <Text fontSize="15px" as="u" display="flex" alignItems="center">

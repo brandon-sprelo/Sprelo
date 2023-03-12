@@ -28,7 +28,6 @@ export default function EmailSubscriptionSignup() {
     });
 
     const result = await response.json();
-    console.log("Result: ", result);
     toast({
       title: "Email subscription submitted!.",
       description: "Thanks for subscribing!",
@@ -69,7 +68,7 @@ export default function EmailSubscriptionSignup() {
                 color="white"
                 bgColor="black"
                 variant="solid"
-                isLoading={isSubmitting}
+                // isLoading={isSubmitting}
                 type="submit"
                 fontFamily="Satoshi-Bold"
                 fontSize="18px"
